@@ -18,6 +18,7 @@ public class Genre {
     @Column(nullable = false)
     private String name;
 
+
     @JsonIgnoreProperties({"genres"})
     @ManyToMany(mappedBy = "genres")
     Set<Book> books;
@@ -27,6 +28,10 @@ public class Genre {
 
     public Genre(Long id, String name) {
         this.id = id;
+        this.name = name;
+    }
+
+    public Genre(String name) {
         this.name = name;
     }
 
