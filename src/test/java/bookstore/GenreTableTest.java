@@ -2,7 +2,8 @@ package bookstore;
 
 import bookstore.models.entities.Genre;
 import bookstore.models.repositories.GenreRepository;
-import org.junit.jupiter.api.Test;
+
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -39,13 +40,22 @@ public class GenreTableTest {
         assertThat(savedGenre).hasFieldOrPropertyWithValue("name", "Test genre");
     }
 
-    @Test void shouldFindById() {
+    @Test
+    public void shouldFindById() {
         Genre savedGenre = this.genreRepository.save(new Genre("Test genre"));
         Optional<Genre> foundGenre = this.genreRepository.findById(savedGenre.getId());
 
         assertThat(foundGenre.get()).isNotNull();
         assertThat(foundGenre.get()).hasFieldOrPropertyWithValue("name", "Test genre");
+    }
 
+    @Test
+    public void shouldDelete() {
+        Genre savedGenre = this.genreRepository.save(new Genre("Test genre"));
+        this.genreRepository.delete(savedGenre);
+        Optional<Genre> foundGenre = this.genreRepository.findById(savedGenre.getId());
+
+        assertThat(foundGenre).isEmpty();
     }
 
 }

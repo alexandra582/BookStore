@@ -2,6 +2,7 @@ package bookstore;
 
 import bookstore.controllers.BookController;
 import bookstore.controllers.GenreController;
+import bookstore.models.repositories.GenreRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -18,6 +19,9 @@ public class SmokeTest {
     @Autowired
     GenreController genreController;
 
+    @Autowired
+    GenreRepository genreRepository;
+
     @Test
     public void bookControllerLoaded() {
         assertThat(bookController).isNotNull();
@@ -26,5 +30,10 @@ public class SmokeTest {
     @Test
     public void genreControllerLoaded() {
         assertThat(genreController).isNotNull();
+    }
+
+    @Test
+    public void genreRepositoryLoaded() {
+        assertThat(genreRepository).isNotNull();
     }
 }
