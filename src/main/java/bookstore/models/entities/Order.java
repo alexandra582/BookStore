@@ -1,10 +1,7 @@
 package bookstore.models.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import javax.persistence.*;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Table(name = "user_order")
 @Entity
@@ -24,6 +21,9 @@ public class Order {
             inverseJoinColumns = @JoinColumn(name = "book_id")
     )
     private List<Book> books;
+    private Date orderDate;
+    private Integer userId;
+
 
     public Order(Long id, List<Book> books) {
         this.id = id;
@@ -56,5 +56,21 @@ public class Order {
 
     public void setBooks(List<Book> books) {
         this.books = books;
+    }
+
+    public Date getOrderDate() {
+        return orderDate;
+    }
+
+    public void setOrderDate(Date orderDate) {
+        this.orderDate = orderDate;
+    }
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 }
