@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.*;
 import java.util.Set;
 
+@Table(name = "book")
 @Entity
 public class Book {
 
